@@ -39,12 +39,12 @@ export class UserService {
       .map(res => res.json());
   }
 
-  saveUser(token, user: User) {
+  saveUser(user: User) {
 
     let json = JSON.stringify(user);
     let params = json;
 
-    let headers = new Headers({ 'Content-Type': 'application/json', 'Authorization': token });
+    let headers = new Headers({ 'Content-Type': 'application/json'});
 
     return this._http.post(this.url + 'usuarios', params, { headers: headers })
       .map(res => res.json());

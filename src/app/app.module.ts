@@ -10,21 +10,28 @@ import { LoginComponent } from './components/login/login.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+
+import { EditUsuarioComponent } from './components/usuario/edit-usuario/edit-usuario.component';
+import { MantUsuarioComponent } from './components/usuario/mant-usuario/mant-usuario.component';
+import { NewUsuarioComponent } from './components/usuario/new-usuario/new-usuario.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    EditUsuarioComponent,
+    MantUsuarioComponent,
+    NewUsuarioComponent
   ],
   imports: [
-     MaterialModule, 
+    MaterialModule, 
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
     // BrowserModule,
     routing,
-    OverlayModule, ReactiveFormsModule,
-    UsuarioModule
-  ],
+    OverlayModule, ReactiveFormsModule
+    ],
   providers: [appRoutingProviders],
   bootstrap: [AppComponent]
 })

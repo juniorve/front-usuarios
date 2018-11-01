@@ -1,4 +1,4 @@
-<div class="contenedor col-md-12 ">
+<div class="contenedor col-md-12">
 
   <br>
   <div class="container">
@@ -14,15 +14,24 @@
 
           <div class="col-sm-12">
             <mat-form-field appearance="outline" class="texto">
-              <mat-label>Nombre del proveedor</mat-label>
-              <input matInput #nombre="ngModel" name="nombre" [(ngModel)]="proveedor.nombre" class="form-control"
-                #nombre maxlength="100" autocomplete="off" required>
-              <mat-hint align="end">{{nombre.value.length}} /100</mat-hint>
+              <mat-label>Id usuario</mat-label>
+              <input matInput #id_usuario="ngModel" name="id_usuario" [(ngModel)]="usuario.id_usuario" class="form-control"
+                #id_usuario maxlength="100" autocomplete="off" required>
+              <mat-hint align="end">{{id_usuario.value.length}} /100</mat-hint>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-12">
+            <mat-form-field appearance="outline" class="texto">
+              <mat-label>Usuario</mat-label>
+              <input matInput #user_name="ngModel" name="user_name" [(ngModel)]="usuario.user_name" class="form-control"
+                #user_name maxlength="100" autocomplete="off" required>
+              <mat-hint align="end">{{user_name.value.length}} /100</mat-hint>
             </mat-form-field>
           </div>
           <div class="container">
             <div class="row">
-
+<!-- 
               <div class="col-xs-12 col-md-6">
                 <mat-form-field class="texto" appearance="outline">
                   <mat-label>Seleccione tipo de prenda</mat-label>
@@ -33,87 +42,41 @@
                   </mat-select>
                   <mat-error *ngIf="tipoControl.hasError('required')">No ha seleccionado tipo de proveedor</mat-error>
                 </mat-form-field>
-              </div>
+              </div> -->
 
-              <div class="col-xs-12 col-md-6">
+              <div class="col-xs-12 col-md-12">
                 <mat-form-field appearance="outline" class="texto">
-                  <mat-label>Celular</mat-label>
-                  <input matInput #celular="ngModel" name="celular" [(ngModel)]="proveedor.celular" class="form-control"
-                    #celular maxlength="100" autocomplete="off" required>
-                  <mat-hint align="end">{{celular.value.length}} /100</mat-hint>
+                  <mat-label>contraseña</mat-label>
+                  <input matInput #pass="ngModel" name="pass" [(ngModel)]="usuario.pass" class="form-control"
+                    #pass maxlength="100" autocomplete="off" type="password" required>
+                  <mat-hint align="end">{{pass.value.length}} /100</mat-hint>
                 </mat-form-field>
               </div>
-            </div>
-          </div>
-
-          <div class="container">
-            <div class="row">
-              <div class="col-xs-12 col-md-6 ">
-                <mat-form-field appearance="outline" class="texto">
-                  <mat-label>Email</mat-label>
-                  <input matInput #email="ngModel" name="email" [(ngModel)]="proveedor.email" class="form-control"
-                    #email maxlength="100" autocomplete="off" required>
-                  <mat-hint align="end">{{email.value.length}} /100</mat-hint>
-                </mat-form-field>
-
-              </div>
-              <div class="col-xs-12 col-md-6">
-                <mat-form-field appearance="outline" class="texto">
-                  <mat-label>Dirección</mat-label>
-                  <input matInput #direccion="ngModel" name="direccion" [(ngModel)]="proveedor.direccion" class="form-control"
-                    #direccion maxlength="100" autocomplete="off" required>
-                  <mat-hint align="end">{{direccion.value.length}} /100</mat-hint>
-                </mat-form-field>
-              </div>
-              <div class="col-xs-12 col-md-12 tip_ev">
-                <mat-form-field class="texto" appearance="outline">
-                  <mat-label>Descripción del proveedor</mat-label>
-                  <textarea matInput #descripcion="ngModel" name="descripcion" [(ngModel)]="proveedor.descripcion" rows="4"
-                    #descripcion maxlength="400" autocomplete="off" required></textarea>
-                  <mat-hint align="end">{{descripcion.value.length}} /400</mat-hint>
-                </mat-form-field>
-              </div>
-
-              <div class="col-sm-12 tip_ev">
-                <label>
-                  <strong>Imagen Principal</strong>
-                </label>
-                <div class="div-imagen">
-                  <br>
-                  <div align="center">
-                    <div *ngIf="!imagenTemp" class="dropzone dz-clickable image" id="dropzone">
-                      <div class="dz-default dz-message">
-                        <span>
-                          <i class="fa fa-picture-o fa-2x"></i>
-                          <br>
-                        </span>
-                      </div>
-                    </div>
-                    <br *ngIf="imagenTemp">
-                    <img *ngIf="imagenTemp" [src]="imagenTemp" class="imgTemporal col-sm-10 img-fluid">
-                  </div>
-                  <br *ngIf="imagenTemp">
-
-                  <input type="file" class="offset-lg-3 imageD" (change)="fileChangeEvent($event , $event.target.files[0])">
-
+              <div class="col-xs-12 col-md-12 ">
+                  <mat-form-field appearance="outline" class="texto">
+                    <mat-label>Confirmar contraseña</mat-label>
+                    <input matInput #pass_confirmation="ngModel" type="password" name="pass_confirmation" [(ngModel)]="usuario.pass_confirmation" class="form-control"
+                      #pass_confirmation maxlength="100" autocomplete="off" required>
+                    <mat-hint align="end">{{pass_confirmation.value.length}} /100</mat-hint>
+                  </mat-form-field>
                 </div>
-              </div>
+  
             </div>
           </div>
         </div>
       </div>
 
-
       <div class="boton">
-        <button class="btn volver btnsave" [routerLink]="['/mant-proveedor']" type="button">
+        <button class="btn volver btnsave" [routerLink]="['/mant-usuario']" type="button">
           <i class="fa fa-arrow-left" aria-hidden="true"></i>
           Regresar</button>
-        <button class="btn guardar  btnsave" (click)="saveProveedor()" type="button">
+        <button class="btn guardar  btnsave" (click)="saveUser()" type="button">
           <i class="fa fa-floppy-o" aria-hidden="true"></i>
           Guardar</button>
-      </div>
 
+      </div>
     </form>
   </div>
   <br>
-</div>
+</div> 
+ 

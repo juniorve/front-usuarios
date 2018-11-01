@@ -28,6 +28,8 @@ textarea{
 
 .contenedor{
 background-color: #eee;
+position: absolute;
+height: 100%;
 }
 .container{
 background-color: white;

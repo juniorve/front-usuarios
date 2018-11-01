@@ -7,9 +7,9 @@
 
   <div class="container">
     <div class="row">
-      <span class="text-adm col-xs-12 col-md-12">Use la tabla a continuación para administrar sus proveedores.</span>
-      <br><br> 
-      <div class="tabla-prov col-md-10 offset-md-1">
+      <span class="text-adm col-xs-12 col-md-10 offset-md-1">Use la tabla a continuación para administrar sus usuarios.</span>
+      <br><br>
+      <div class="col-md-10 offset-md-1">
         <table class="table tabla">
           <thead>
             <tr>
@@ -36,8 +36,10 @@
         </table>
       </div>
       <div class="boton">
-        <button class="btn btn-info nuevo" [routerLink]="['/principal']"><i class="fa fa-arrow-left mas" aria-hidden="true"></i>
-          <strong>Regresar inicio</strong></button>
+        <a class="btn btn-info nuevo" href="https://front-sigap.herokuapp.com/dashboard" type="button"><i class="fa fa-arrow-left mas"
+            aria-hidden="true"></i>
+          <strong>Regresar inicio</strong>
+        </a>
         <button class="btn prov btn-nuevo" [routerLink]="['/new-usuario']"><i class="fa fa-plus mas" aria-hidden="true"></i>
           <strong>Nuevo Usuario</strong></button>
       </div>

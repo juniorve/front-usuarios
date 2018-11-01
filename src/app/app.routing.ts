@@ -1,17 +1,15 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LoginComponent } from './components/login/login.component'; 
+import { EditUsuarioComponent } from './components/usuario/edit-usuario/edit-usuario.component';
+import { MantUsuarioComponent } from './components/usuario/mant-usuario/mant-usuario.component';
+import { NewUsuarioComponent } from './components/usuario/new-usuario/new-usuario.component';
 
 const appRoutes: Routes = [
-  /*  {
-    path: '',
-    component: SidebarComponent,
-    children: [
-     ]
-  },*/
-  { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' }
+  {path:'edit-usuario/:id', component: EditUsuarioComponent},
+  {path:'mant-usuario', component: MantUsuarioComponent},
+  {path:'new-usuario', component: NewUsuarioComponent},
+  { path: '', redirectTo: '/mant-usuario', pathMatch: 'full' }
 ];
 
 export const appRoutingProviders: any[] = [];

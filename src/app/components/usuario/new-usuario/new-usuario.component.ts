@@ -1,7 +1,7 @@
+import { User } from './../../../models/user';
+import { UserService } from './../../../services/user.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Proveedor } from '../../../models/proveedor';
 import { GLOBAL } from '../../../services/global';
-import { UserService } from '../../../services/user.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
 
@@ -17,14 +17,16 @@ declare var $: any;
   selector: 'new-usuario',
   templateUrl: './new-usuario.component.html',
   styleUrls: ['./new-usuario.component.css'],
-  providers: []
+  providers: [UserService]
 
 })
 export class NewUsuarioComponent implements OnInit {
-  public title: String = 'Registro de nuevo proveedor';
+  public title: String = 'Registro de nuevo usuario';
   public url;
+  public usuario:any={};
   
   constructor(
+    private _userService: UserService,
     private _route: ActivatedRoute,
     private _router: Router) {
     this.url = GLOBAL.url;
@@ -32,5 +34,21 @@ export class NewUsuarioComponent implements OnInit {
 
   ngOnInit() { }
 
+  saveUser(){
+    this._userService.saveUser(this.usuario).subscribe(
+      response=>{
+        if(!response.data){
+          swal('Usuario no registrado','No se puedo guardar usuario','warning');
+        }else{
+          swal('Usuario registrado','Usuario guardado exitosamente','success');
+          this._router.navigate(['/mant-usuario']);
+          console.log(response.data);
+        }
+      },
+      erro=>{
+
+      }
+    );
+  }
 
 }
