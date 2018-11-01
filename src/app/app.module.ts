@@ -1,4 +1,3 @@
-import { UsuarioModule } from './components/usuario/usuario.module';
 import { MaterialModule } from './shared/modules/material.module';
 import { routing, appRoutingProviders } from './app.routing';
 import { BrowserModule } from '@angular/platform-browser';
