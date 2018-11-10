@@ -14,25 +14,27 @@
           <thead>
             <tr>
               <th>N°</th>
-              <th>Id</th>
+              <th>Tipo</th>
               <th>Usuario</th>
               <th>Contraseña</th>
               <th>editar/eliminar</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let usuario of usuarios; let i=index">
+            <ng-container *ngFor="let usuario of usuarios; let i=index">
+            <tr *ngIf="usuario.estado=='Activo'">
               <td scope="row">{{i+1}}</td>
-              <td>{{usuario.id_usuario}}</td>
+              <td>{{usuario.tipo}}</td>
               <td>{{usuario.user_name}}</td>
-              <td>{{usuario.pass}}</td>
+              <td>****************</td>
               <td>
                 <div class="btn-group">
                   <button class="btn btn-default" (click)="editUsuario(usuario.id_usuario)"><span class="fa fa-pencil"></span></button>
-                  <button class="btn btn-danger" (click)="deleteUsuario(usuario.id_usuario)"><span class="fa fa-trash"></span></button>
+                  <button class="btn btn-danger" (click)="deleteUsuario(usuario.id_usuario,usuario)"><span class="fa fa-trash"></span></button>
                 </div>
               </td>
             </tr>
+          </ng-container>
         </table>
       </div>
       <div class="boton">

@@ -28,11 +28,11 @@ export class UserService {
     return this._http.get(this.url + 'usuarios/' + id, options).map(res => res.json());
   }
 
-  updateUser(id: String, user: User) {
+  updateUser(id: String, user: any) {
 
     const json = JSON.stringify(user);
     const params = json;
-
+console.log(params);
     const headers = new Headers({ 'Content-Type': 'application/json' });
 
     return this._http.put(this.url + 'usuarios/' + id, params, { headers: headers })

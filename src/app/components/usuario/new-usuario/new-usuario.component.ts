@@ -35,6 +35,7 @@ export class NewUsuarioComponent implements OnInit {
   ngOnInit() { }
 
   saveUser(){
+    this.usuario.estado='Activo';
     this._userService.saveUser(this.usuario).subscribe(
       response=>{
         if(!response.data){
