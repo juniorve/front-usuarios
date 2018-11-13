@@ -98,11 +98,7 @@ padding-bottom: 40px;
   max-width: 500px;
   width: 100%;
 }
-
-.example-full-width {
-  width: 100%;
-}
-
+ 
 
 
 .texto{
@@ -112,4 +108,10 @@ padding-bottom: 40px;
 .boton{
   text-align: center;
   padding: 20px 0px;
+}
+
+@media(min-width:992px){
+form{
+  padding: 0px 10%;
+}
 }

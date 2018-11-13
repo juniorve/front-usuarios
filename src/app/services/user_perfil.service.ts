@@ -28,4 +28,16 @@ export class User_perfilService {
       .map(res => res.json());
   }
 
+  saveUser_perfil(userPerfil: Usuario_perfil) {
+
+    let json = JSON.stringify(userPerfil);
+    let params = json;
+
+    let headers = new Headers({ 'Content-Type': 'application/json'});
+
+    return this._http.post(this.url + 'usuario_perfil', params, { headers: headers })
+      .map(res => res.json());
+  }
+
+
 }

@@ -54,8 +54,6 @@ export class MantUsuarioComponent implements OnInit {
     );
   }
 
-
-
   getUsuario_perfil() {
     this._user_perfilService.getUsuarios_perfil().subscribe(
       response => {

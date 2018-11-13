@@ -32,7 +32,6 @@ export class UserService {
 
     const json = JSON.stringify(user);
     const params = json;
-console.log(params);
     const headers = new Headers({ 'Content-Type': 'application/json' });
 
     return this._http.put(this.url + 'usuarios/' + id, params, { headers: headers })
