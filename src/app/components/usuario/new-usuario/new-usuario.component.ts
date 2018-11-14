@@ -8,6 +8,7 @@ import { FormControl, Validators } from '@angular/forms';
 import * as _swal from 'sweetalert';
 import { SweetAlert } from 'sweetalert/typings/core';
 import { User_perfilService } from 'src/app/services/user_perfil.service';
+import { User_moduloService } from 'src/app/services/user_modulo';
 const swal: SweetAlert = _swal as any;
 
 declare var JQuery: any;
@@ -18,13 +19,15 @@ declare var $: any;
   selector: 'new-usuario',
   templateUrl: './new-usuario.component.html',
   styleUrls: ['./new-usuario.component.css'],
-  providers: [UserService,User_perfilService]
+  providers: [UserService,User_perfilService,User_moduloService]
 
 })
 export class NewUsuarioComponent implements OnInit {
   public title: String = 'Registro de nuevo usuario';
   public url;
   public usuario:any={};
+  public umodulos:any={};
+  public usuario_modulo:any={};
   public usuario_perfil:any={};
   public tipos: any[] = [
     {value: 1, viewValue: 'Administrador'},
@@ -35,16 +38,55 @@ export class NewUsuarioComponent implements OnInit {
 
   
   modulos = new FormControl();
-  modulosList: string[] = ['Carga de recaudaciones',
-   'Control de recibos', 'Estadisticas', 'Estado de pagos', 'Disponibilidad docente', 
-   'Control de tesistas', 'Legajo docente', 'Administración de usuarios'];
+  modulosList: any[] = [
+    
+    {value: 1, viewValue: 'Carga de recaudaciones'},
+    {value: 2, viewValue: 'Control de recibos'},
+    {value: 3, viewValue: 'Estadisticas'},
+    {value: 4, viewValue: 'Estado de pagos'},
+    {value: 5, viewValue: 'Disponibilidad docente'},
+    {value: 6, viewValue: 'Control de tesistas'},
+    {value: 7, viewValue: 'Legajo docente'},
+    {value: 8, viewValue: 'Administración de usuarios'}
+  ];
+
+  modulosL:any={
+    mod1:[
+      {value: 1, viewValue: 'Carga de recaudaciones'},
+      {value: 2, viewValue: 'Control de recibos'},
+      {value: 3, viewValue: 'Estadisticas'},
+      {value: 4, viewValue: 'Estado de pagos'},
+      {value: 5, viewValue: 'Disponibilidad docente'},
+      {value: 6, viewValue: 'Control de tesistas'},
+      {value: 7, viewValue: 'Legajo docente'},
+      {value: 8, viewValue: 'Administración de usuarios'}
+    ],
+    mod2:[
+      {value: 1, viewValue: 'Carga de recaudaciones'},
+      {value: 2, viewValue: 'Control de recibos'},
+      {value: 3, viewValue: 'Estadisticas'},
+      {value: 4, viewValue: 'Estado de pagos'}
+    ],
+    mod3:[
+      {value: 6, viewValue: 'Control de tesistas'},
+      {value: 7, viewValue: 'Legajo docente'},
+    ],
+    mod4:[ 
+      {value: 5, viewValue: 'Disponibilidad docente'},
+      {value: 7, viewValue: 'Legajo docente'},
+    ]
+  };
+
+  band:boolean=false;
   
   constructor(
     private _userPerfilService:User_perfilService,
+    private _userModuloService:User_moduloService,
     private _userService: UserService,
     private _route: ActivatedRoute,
     private _router: Router) {
     this.url = GLOBAL.url;
+    this.usuario_perfil.id_perfil=0;
   }
 
   ngOnInit() { 
@@ -54,7 +96,6 @@ export class NewUsuarioComponent implements OnInit {
   saveUser(){
     this.usuario.estado='Activo';
     this.usuario.id_usuario=this.usuarios.length+1;
-    console.log(this.usuario);
     this._userService.saveUser(this.usuario).subscribe(
       response=>{
         if(!response.data){
@@ -62,13 +103,11 @@ export class NewUsuarioComponent implements OnInit {
         }else{
           this.usuario_perfil.id_usuario = response.data.id_usuario;
           this.usuario_perfil.estado_up = true;
-          console.log(this.usuario_perfil);
           this._userPerfilService.saveUser_perfil(this.usuario_perfil).subscribe(
             response=>{
               if(!response.data){
                 console.log("error al guardar usuario_perfil");
               }else{
-                console.log(response.data);
                 swal('Usuario registrado','Usuario guardado exitosamente','success');
                 this._router.navigate(['/mant-usuario']);
               }
@@ -77,6 +116,22 @@ export class NewUsuarioComponent implements OnInit {
 
             }
           );
+
+          // console.log(this.umodulos.id_mod);
+          
+          for(let modulo of this.umodulos.id_mod){
+            this.usuario_modulo.id_usuario=response.data.id_usuario;
+            this.usuario_modulo.estado_um=true;
+            this.usuario_modulo.id_mod = modulo;
+            console.log(this.usuario_modulo);
+            this._userModuloService.saveUser_modulo(this.usuario_modulo).subscribe(
+            response=>{
+              // console.log(response.data)
+            },
+            error=>{
+            }
+          );
+        }
           
         }
       },

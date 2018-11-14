@@ -10,7 +10,7 @@
 
     <form>
       <div class="row">
-         <!-- <div class="col-sm-6">
+        <!-- <div class="col-sm-6">
           <mat-form-field appearance="outline" class="texto">
             <mat-label>Id usuario</mat-label>
             <input matInput #id_usuario="ngModel" name="id_usuario" [(ngModel)]="usuario.id_usuario" class="form-control"
@@ -18,66 +18,79 @@
             <mat-hint align="end">{{id_usuario.value.length}} /100</mat-hint>
           </mat-form-field>
         </div> -->
+
         <div class="col-sm-12">
-        <mat-form-field appearance="outline" class="texto">
-          <mat-select placeholder="Módulo" [formControl]="modulos" multiple>
-            <mat-option *ngFor="let modulo of modulosList" [value]="modulo">{{modulo}}</mat-option>
-          </mat-select>
-        </mat-form-field>
+          <mat-form-field appearance="outline" class="texto">
+            <mat-select name="id_perfil" [(ngModel)]="usuario_perfil.id_perfil" placeholder="Tipo de usuario">
+              <mat-option *ngFor="let tipo of tipos" [value]="tipo.value">
+                {{tipo.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
 
-            <div class="col-sm-12">
-              <mat-form-field appearance="outline" class="texto">
-                <mat-select name="id_perfil" [(ngModel)]="usuario_perfil.id_perfil" placeholder="Tipo de usuario">
-                  <mat-option *ngFor="let tipo of tipos" [value]="tipo.value">
-                    {{tipo.viewValue}}
-                  </mat-option>
+        <div class="col-sm-12">
+            <mat-form-field appearance="outline" class="texto" *ngIf="usuario_perfil.id_perfil==0">
+                <mat-select disabled name="id_mod" [(ngModel)]="umodulos.id_mod" placeholder="Módulo" [formControl]="modulos"
+                  multiple>
+                  <mat-option *ngFor="let modulo of modulosL.mod1" [value]="modulo.value">{{modulo.viewValue}}</mat-option>
                 </mat-select>
+              </mat-form-field>
+          <mat-form-field appearance="outline" class="texto" *ngIf="usuario_perfil.id_perfil==1">
+            <mat-select name="id_mod" [(ngModel)]="umodulos.id_mod" placeholder="Módulo" [formControl]="modulos"
+              multiple>
+              <mat-option *ngFor="let modulo of modulosL.mod1" [value]="modulo.value">{{modulo.viewValue}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="texto" *ngIf="usuario_perfil.id_perfil==2">
+            <mat-select name="id_mod" [(ngModel)]="umodulos.id_mod" placeholder="Módulo" [formControl]="modulos"
+              multiple>
+              <mat-option *ngFor="let modulo of modulosL.mod2" [value]="modulo.value">{{modulo.viewValue}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="texto" *ngIf="usuario_perfil.id_perfil==3">
+            <mat-select name="id_mod" [(ngModel)]="umodulos.id_mod" placeholder="Módulo" [formControl]="modulos"
+              multiple>
+              <mat-option *ngFor="let modulo of modulosL.mod3" [value]="modulo.value">{{modulo.viewValue}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="texto" *ngIf="usuario_perfil.id_perfil==4">
+            <mat-select name="id_mod" [(ngModel)]="umodulos.id_mod" placeholder="Módulo" [formControl]="modulos"
+              multiple>
+              <mat-option *ngFor="let modulo of modulosL.mod4" [value]="modulo.value">{{modulo.viewValue}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-12">
+          <mat-form-field appearance="outline" class="texto">
+            <mat-label>Usuario</mat-label>
+            <input matInput #user_name="ngModel" name="user_name" [(ngModel)]="usuario.user_name" class="form-control"
+              #user_name maxlength="100" autocomplete="off" required>
+            <mat-hint align="end">{{user_name.value.length}} /100</mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12 col-md-12">
+              <mat-form-field appearance="outline" class="texto">
+                <mat-label>contraseña</mat-label>
+                <input matInput #pass="ngModel" name="pass" [(ngModel)]="usuario.pass" class="form-control" #pass
+                  maxlength="100" autocomplete="off" type="password" required>
+                <mat-hint align="end">{{pass.value.length}} /100</mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="col-xs-12 col-md-12 ">
+              <mat-form-field appearance="outline" class="texto">
+                <mat-label>Confirmar contraseña</mat-label>
+                <input matInput #pass_confirmation="ngModel" type="password" name="pass_confirmation" [(ngModel)]="usuario.pass_confirmation"
+                  class="form-control" #pass_confirmation maxlength="100" autocomplete="off" required>
+                <mat-hint align="end">{{pass_confirmation.value.length}} /100</mat-hint>
               </mat-form-field>
             </div>
 
-          <div class="col-sm-12">
-            <mat-form-field appearance="outline" class="texto">
-              <mat-label>Usuario</mat-label>
-              <input matInput #user_name="ngModel" name="user_name" [(ngModel)]="usuario.user_name" class="form-control"
-                #user_name maxlength="100" autocomplete="off" required>
-              <mat-hint align="end">{{user_name.value.length}} /100</mat-hint>
-            </mat-form-field>
           </div>
-          <div class="container">
-            <div class="row">
-              <!-- 
-              <div class="col-xs-12 col-md-6">
-                <mat-form-field class="texto" appearance="outline">
-                  <mat-label>Seleccione tipo de prenda</mat-label>
-                  <mat-select name="tipo" [(ngModel)]="proveedor.tipo" [formControl]="tipoControl" required>
-                    <mat-option *ngFor="let tipo of tipos" [value]="tipo.name">
-                      {{tipo.name}}
-                    </mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="tipoControl.hasError('required')">No ha seleccionado tipo de proveedor</mat-error>
-                </mat-form-field>
-              </div> -->
-
-              <div class="col-xs-12 col-md-12">
-                <mat-form-field appearance="outline" class="texto">
-                  <mat-label>contraseña</mat-label>
-                  <input matInput #pass="ngModel" name="pass" [(ngModel)]="usuario.pass" class="form-control" #pass
-                    maxlength="100" autocomplete="off" type="password" required>
-                  <mat-hint align="end">{{pass.value.length}} /100</mat-hint>
-                </mat-form-field>
-              </div>
-              <div class="col-xs-12 col-md-12 ">
-                <mat-form-field appearance="outline" class="texto">
-                  <mat-label>Confirmar contraseña</mat-label>
-                  <input matInput #pass_confirmation="ngModel" type="password" name="pass_confirmation" [(ngModel)]="usuario.pass_confirmation"
-                    class="form-control" #pass_confirmation maxlength="100" autocomplete="off" required>
-                  <mat-hint align="end">{{pass_confirmation.value.length}} /100</mat-hint>
-                </mat-form-field>
-              </div>
-
-            </div>
-          </div>
+        </div>
       </div>
 
       <div class="boton">
