@@ -26,6 +26,7 @@ export class NewUsuarioComponent implements OnInit {
   public title: String = 'Registro de nuevo usuario';
   public url;
   public usuario:any={};
+  
   public umodulos:any={};
   public usuario_modulo:any={};
   public usuario_perfil:any={};
@@ -35,11 +36,9 @@ export class NewUsuarioComponent implements OnInit {
     {value: 3, viewValue: 'Docente'},
     {value: 4, viewValue: 'Alumno'}
   ];
-
   
   modulos = new FormControl();
   modulosList: any[] = [
-    
     {value: 1, viewValue: 'Carga de recaudaciones'},
     {value: 2, viewValue: 'Control de recibos'},
     {value: 3, viewValue: 'Estadisticas'},
@@ -76,9 +75,7 @@ export class NewUsuarioComponent implements OnInit {
       {value: 7, viewValue: 'Legajo docente'},
     ]
   };
-
-  band:boolean=false;
-  
+ 
   constructor(
     private _userPerfilService:User_perfilService,
     private _userModuloService:User_moduloService,
@@ -112,12 +109,10 @@ export class NewUsuarioComponent implements OnInit {
                 this._router.navigate(['/mant-usuario']);
               }
             },
-            error=>{
-
-            }
+            error=>{}
           );
 
-          // console.log(this.umodulos.id_mod);
+          console.log(this.umodulos.id_mod);
           
           for(let modulo of this.umodulos.id_mod){
             this.usuario_modulo.id_usuario=response.data.id_usuario;

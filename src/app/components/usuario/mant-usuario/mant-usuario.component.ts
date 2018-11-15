@@ -55,7 +55,7 @@ export class MantUsuarioComponent implements OnInit {
   }
 
   getUsuario_perfil() {
-    this._user_perfilService.getUsuarios_perfil().subscribe(
+    this._user_perfilService.getUsuario_perfil().subscribe(
       response => {
         if (!response.data) {
           console.log("No hay usuarios");

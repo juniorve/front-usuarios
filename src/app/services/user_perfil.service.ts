@@ -19,7 +19,16 @@ export class User_perfilService {
     this.url = GLOBAL.url;
   }
 
-  getUsuarios_perfil() {
+  getUsuarios_perfil(id:any) {
+
+    let headers = new Headers({ 'Content-Type': 'application/json'});
+    let options = new RequestOptions({ headers: headers });
+
+    return this._http.get(this.url + 'usuario_perfil/'+id, options)
+      .map(res => res.json());
+  }
+
+  getUsuario_perfil() {
 
     let headers = new Headers({ 'Content-Type': 'application/json'});
     let options = new RequestOptions({ headers: headers });
@@ -36,6 +45,16 @@ export class User_perfilService {
     let headers = new Headers({ 'Content-Type': 'application/json'});
 
     return this._http.post(this.url + 'usuario_perfil', params, { headers: headers })
+      .map(res => res.json());
+  }
+
+  updateUser_perfil(id: String, user_perfil: any) {
+
+    const json = JSON.stringify(user_perfil);
+    const params = json;
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+
+    return this._http.put(this.url + 'usuario_perfil/' + id, params, { headers: headers })
       .map(res => res.json());
   }
 
