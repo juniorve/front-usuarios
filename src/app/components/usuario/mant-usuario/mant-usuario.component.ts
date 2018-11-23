@@ -35,7 +35,7 @@ export class MantUsuarioComponent implements OnInit {
 
   ngOnInit() {
     this.getUsuarios();
-    this.getUsuario_perfil();
+    //  this.getUsuario_perfil();
   }
 
   getUsuarios() {
@@ -45,7 +45,9 @@ export class MantUsuarioComponent implements OnInit {
           console.log("No hay usuarios");
         } else {
           this.usuarios = response.data;
-
+           if(this.usuarios.length>0){
+            this.getUsuario_perfil();
+          } 
           console.log(this.usuarios);
         }
       },
