@@ -126,7 +126,8 @@ export class EditUsuarioComponent implements OnInit {
                 error => {
                 }
               );
-            } else {
+            } 
+            else {
               this.usuario_modulo.band = false;
               this._userModuloService.updateUser_modulo(this.usuarioId, this.usuario_modulo).subscribe(
                 response => {
