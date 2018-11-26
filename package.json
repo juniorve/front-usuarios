@@ -25,10 +25,11 @@
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
     "core-js": "^2.5.4",
+    "express": "^4.16.4",
     "rxjs": "^6.2.1",
     "rxjs-compat": "^6.0.0-rc.0",
-    "zone.js": "^0.8.26",
-    "sweetalert": "^2.1.0"
+    "sweetalert": "^2.1.0",
+    "zone.js": "^0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.6.6",
@@ -52,8 +53,8 @@
     "tslint": "~5.9.1",
     "typescript": "~2.7.2"
   },
-  "engines":{
-    "node":"~8.9.1",
-    "npm":"~6.0.0"
+  "engines": {
+    "node": "~8.9.1",
+    "npm": "~6.0.0"
   }
 }
