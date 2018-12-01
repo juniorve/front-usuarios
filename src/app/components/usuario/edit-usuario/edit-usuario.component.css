@@ -8,6 +8,25 @@
   background: rgb(112,128,144,1)
 }
 
+.desp{
+margin-top: 10px;
+}
+.modul{
+  margin-top: -10px;
+  margin-bottom: 5px;
+}
+
+.example-section {
+  display: block;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.example-margin {
+  margin: 0 10px;
+}
+
 
 .guardar{
   color: white;

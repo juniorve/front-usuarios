@@ -26,6 +26,9 @@ export class EditUsuarioComponent implements OnInit {
   public url;
   public usuario: any = {};
 
+  // public checked = true;
+  // public indeterminate = false;
+
   public umodulos: any = { id_mod: [] };
   public usuario_modulo: any = {};
   public usuario_perfil: any = {};
@@ -38,20 +41,20 @@ export class EditUsuarioComponent implements OnInit {
   modulos = new FormControl();
   modulosL: any = {
     mod1: [
-      { value: 1, viewValue: 'Carga de recaudaciones' },
-      { value: 2, viewValue: 'Control de recibos' },
-      { value: 3, viewValue: 'Estadisticas' },
-      { value: 4, viewValue: 'Estado de pagos' },
-      { value: 5, viewValue: 'Disponibilidad docente' },
-      { value: 6, viewValue: 'Control de tesistas' },
-      { value: 7, viewValue: 'Legajo docente' },
-      { value: 8, viewValue: 'Administración de usuarios' }
+      {checked:false, value: 1, viewValue: 'Carga de recaudaciones'},
+      {checked:false, value: 2, viewValue: 'Control de recibos' },
+      {checked:false, value: 3, viewValue: 'Estadisticas' },
+      {checked:false, value: 4, viewValue: 'Estado de pagos' },
+      {checked:false, value: 5, viewValue: 'Disponibilidad docente' },
+      {checked:false, value: 6, viewValue: 'Control de tesistas' },
+      {checked:false, value: 7, viewValue: 'Legajo docente' },
+      {checked:false, value: 8, viewValue: 'Administración de usuarios' }
     ],
     mod2: [
-      { value: 1, viewValue: 'Carga de recaudaciones' },
-      { value: 2, viewValue: 'Control de recibos' },
-      { value: 3, viewValue: 'Estadisticas' },
-      { value: 4, viewValue: 'Estado de pagos' }
+      {checked:false, value: 1, viewValue: 'Carga de recaudaciones' },
+      {checked:false, value: 2, viewValue: 'Control de recibos' },
+      {checked:false, value: 3, viewValue: 'Estadisticas' },
+      {checked:false, value: 4, viewValue: 'Estado de pagos' }
     ],
     mod3: [
       { value: 6, viewValue: 'Control de tesistas' },
@@ -62,6 +65,17 @@ export class EditUsuarioComponent implements OnInit {
       { value: 7, viewValue: 'Legajo docente' },
     ]
   };
+
+  public tmodulos= [
+  { value: 1, viewValue: 'Carga de recaudaciones', },
+  { value: 2, viewValue: 'Control de recibos' },
+  { value: 3, viewValue: 'Estadisticas' },
+  { value: 4, viewValue: 'Estado de pagos' },
+  { value: 5, viewValue: 'Disponibilidad docente' },
+  { value: 6, viewValue: 'Control de tesistas' },
+  { value: 7, viewValue: 'Legajo docente' },
+  { value: 8, viewValue: 'Administración de usuarios' }];
+
   constructor(
     private _userPerfilService: User_perfilService,
     private _userModuloService: User_moduloService,
@@ -76,7 +90,7 @@ export class EditUsuarioComponent implements OnInit {
   ngOnInit() {
     this.gerUsuarioUrl();
     this.getUsuarioPerfil();
-    // this.getUsuario_modulo();
+      // this.getUsuario_modulo();
   }
 
   public usuarioId: String = '';
@@ -90,6 +104,7 @@ export class EditUsuarioComponent implements OnInit {
   }
 
   editUsuario() {
+    console.log(this.modulosL.mod2)
     this._userService.updateUser(this.usuarioId, this.usuario).subscribe(
       response => {
         if (!response.data) {
@@ -167,18 +182,22 @@ export class EditUsuarioComponent implements OnInit {
   }
 
 
-  getUsuario_modulo() {
+  getUsuario_modulo(modulo:any) {
     this._userModuloService.getUsuarios_modulo(this.usuarioId).subscribe(
       response => {
         if (!response.data) {
         } else {
-          console.log(response.data.length);
+          console.log(response.data);
 
           for (let i = 0; i < response.data.length; i++) {
-            this.umodulos.id_mod[i] = response.data[i].id_mod;
+            // this.umodulos.id_mod[i] = response.data[i].id_mod;
+            for(let j=0; j<modulo.length; j++){
+              if(modulo[j].value==response.data[i].id_mod){
+                modulo[j].checked=true;
+              }
+            }
+            console.log(modulo);
           }
-          console.log(this.umodulos.id_mod);
-
         }
       },
       error => {
@@ -197,7 +216,26 @@ export class EditUsuarioComponent implements OnInit {
         if (!response.data) {
         } else {
           this.usuario_perfil.id_perfil = response.data.id_perfil;
-          console.log(response.data);
+      
+          if(response.data.id_perfil==1){
+            // this.tmodulos = this.modulosL.mod2;
+            this.getUsuario_modulo(this.modulosL.mod1);
+          }
+
+          if(response.data.id_perfil==2){
+            // this.tmodulos = this.modulosL.mod2;
+            this.getUsuario_modulo(this.modulosL.mod2);
+          }
+
+          if(response.data.id_perfil==3){
+            // this.tmodulos = this.modulosL.mod2;
+            this.getUsuario_modulo(this.modulosL.mod3);
+          }
+
+          if(response.data.id_perfil==4){
+            // this.tmodulos = this.modulosL.mod2;
+            this.getUsuario_modulo(this.modulosL.mod4);
+          }
         }
       },
       error => {
