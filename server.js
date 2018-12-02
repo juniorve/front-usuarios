@@ -5,7 +5,7 @@ const path = require('path');
 const app = express();
  
 // Replace the '/dist/<to_your_project_name>'
-app.use(express.static(__dirname + '/dist'));
+app.use(express.static(__dirname + '/dist/'));
  
 app.get('*', function(req,res) {
   // Replace the '/dist/<to_your_project_name>/index.html'
