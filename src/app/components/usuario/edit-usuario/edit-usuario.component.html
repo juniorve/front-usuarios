@@ -38,20 +38,24 @@
             </mat-form-field> -->
 
             <section class="example-section" *ngIf="usuario_perfil.id_perfil==1">
-                <mat-checkbox class="example-margin" [ngModelOptions]="{standalone: true}" [(ngModel)]="modulo.checked" *ngFor="let modulo of modulosL.mod1, let i=index" [value]="modulo.value">{{modulo.viewValue}}</mat-checkbox>
-              </section>
+              <mat-checkbox class="example-margin" [ngModelOptions]="{standalone: true}" [(ngModel)]="modulo.checked"
+                *ngFor="let modulo of modulosL.mod1, let i=index" [value]="modulo.value">{{modulo.viewValue}}</mat-checkbox>
+            </section>
 
             <section class="example-section" *ngIf="usuario_perfil.id_perfil==2">
-                <mat-checkbox class="example-margin" [ngModelOptions]="{standalone: true}" [(ngModel)]="modulo.checked" *ngFor="let modulo of modulosL.mod2, let i=index" [value]="modulo.value">{{modulo.viewValue}}</mat-checkbox>
-              </section>
+              <mat-checkbox class="example-margin" [ngModelOptions]="{standalone: true}" [(ngModel)]="modulo.checked"
+                *ngFor="let modulo of modulosL.mod2, let i=index" [value]="modulo.value">{{modulo.viewValue}}</mat-checkbox>
+            </section>
 
-              <section class="example-section" *ngIf="usuario_perfil.id_perfil==3">
-                  <mat-checkbox class="example-margin" [ngModelOptions]="{standalone: true}" [(ngModel)]="modulo.checked" *ngFor="let modulo of modulosL.mod3, let i=index" [value]="modulo.value">{{modulo.viewValue}}</mat-checkbox>
-                </section>
-                <section class="example-section" *ngIf="usuario_perfil.id_perfil==4">
-                    <mat-checkbox class="example-margin" [ngModelOptions]="{standalone: true}" [(ngModel)]="modulo.checked" *ngFor="let modulo of modulosL.mod4, let i=index" [value]="modulo.value">{{modulo.viewValue}}</mat-checkbox>
-                  </section>
-      
+            <section class="example-section" *ngIf="usuario_perfil.id_perfil==3">
+              <mat-checkbox class="example-margin" [ngModelOptions]="{standalone: true}" [(ngModel)]="modulo.checked"
+                *ngFor="let modulo of modulosL.mod3, let i=index" [value]="modulo.value">{{modulo.viewValue}}</mat-checkbox>
+            </section>
+            <section class="example-section" *ngIf="usuario_perfil.id_perfil==4">
+              <mat-checkbox class="example-margin" [ngModelOptions]="{standalone: true}" [(ngModel)]="modulo.checked"
+                *ngFor="let modulo of modulosL.mod4, let i=index" [value]="modulo.value">{{modulo.viewValue}}</mat-checkbox>
+            </section>
+
 
             <mat-form-field appearance="outline" class="texto" *ngIf="usuario_perfil.id_perfil==3">
               <mat-select name="id_mod" [(ngModel)]="umodulos.id_mod" placeholder="Módulo" [formControl]="modulos"
