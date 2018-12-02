@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --prod"
+    "postinstall": "ng build --aot -prod"
   },
   "private": true,
   "dependencies": {
@@ -26,9 +26,11 @@
     "@angular/router": "^6.0.3",
     "core-js": "^2.5.4",
     "express": "^4.16.4",
+    "path": "^0.12.7",
     "rxjs": "^6.2.1",
     "rxjs-compat": "^6.0.0-rc.0",
     "sweetalert": "^2.1.0",
+    "typescript": "~2.7.2",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
@@ -41,6 +43,7 @@
     "@types/node": "~8.9.4",
     "angular-cli-ghpages": "^0.5.3",
     "codelyzer": "~4.2.1",
+    "enhanced-resolve": "^3.3.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~1.7.1",
